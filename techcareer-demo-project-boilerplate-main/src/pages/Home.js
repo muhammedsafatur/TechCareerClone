@@ -4,7 +4,7 @@ import Footer from '../components/Footer'
 import Navbar from "../components/Navbar";
 import Carousel from "../components/Carousel";
 import EventsSlider from "../components/EventsSlider";
-
+import  Modal from '../components/Modal';
 function Home() {
 	return (
 		<>
@@ -12,6 +12,7 @@ function Home() {
 			<Navbar />
 			<Header />
 			<Carousel/>
+			<Modal/>
 			<EventsSlider/>
 
 			<Footer />

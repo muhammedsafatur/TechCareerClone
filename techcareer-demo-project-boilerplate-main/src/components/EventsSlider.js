@@ -1,9 +1,14 @@
 import React from 'react'
-
+import Modal  from  './Modal'
 
 function EventsSlider() {
-    return ( <div>
-    <carousel/>
+    return ( <div>      
+          
+          
+    <p> sa 
+        
+    </p>
+    <Modal/>
 
         </div>
 
