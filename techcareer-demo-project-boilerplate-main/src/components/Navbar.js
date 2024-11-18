@@ -9,8 +9,8 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import InputBase from '@mui/material/InputBase';
 import { Button, Menu, MenuItem, Stack } from '@mui/material';
-import logo from '../assets/techcareer-logo.svg';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import logo from './assets/techcareer-logo.svg';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -167,7 +167,7 @@ export default function PrimarySearchAppBar() {
                 display: 'flex',
                 alignItems: 'center',
                 padding: '8px 16px',
-                boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+                boxShadow: '0 2px 4px rgb(0,194,109)',
               }}
             >
               <IconButton 
