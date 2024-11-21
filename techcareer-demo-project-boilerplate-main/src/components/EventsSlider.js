@@ -6,7 +6,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 function EventsSlider() {
-  // Sağ ve Sol ok tuşları bileşeni
   const ArrowButton = ({ direction, onClick }) => {
     return (
       <div
@@ -14,7 +13,7 @@ function EventsSlider() {
         style={{
           position: "absolute",
           top: "50%",
-          [direction]: "20px", // Sol veya sağda olacak şekilde konumlandırma
+          [direction]: "-50px",
           transform: "translateY(-50%)",
           backgroundColor: "#FFFF",
           borderRadius: "50%",
@@ -24,7 +23,7 @@ function EventsSlider() {
           alignItems: "center",
           justifyContent: "center",
           cursor: "pointer",
-          zIndex: 10, // Yön oklarının diğer içeriklerin üstünde görünmesini sağlar
+          zIndex: 10,
         }}
       >
         <span style={{ color: "#00b666", fontSize: "20px" }}>
@@ -39,41 +38,65 @@ function EventsSlider() {
     arrows: true,
     infinite: true,
     autoplay: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 5000,
     slidesToShow: 1,
     slidesToScroll: 1,
-    nextArrow: <ArrowButton direction="right" />, // Sağ yön ok
-    prevArrow: <ArrowButton direction="left" />,  // Sol yön ok
+    nextArrow: <ArrowButton direction="right" />,
+    prevArrow: <ArrowButton direction="left" />,
   };
+
+  // Slider içeriği
+  const slides = [
+    {
+      image: "https://www.techcareer.net/_next/image?url=https%3A%2F%2Fcdn.gcp.techcareer.net%2F1112_412_2_cd52574011%2F1112_412_2_cd52574011.png&w=1200&q=100",
+      url: "https://survey.alchemer.com/s3/8068418/N240021",
+    },
+    {
+      image: "https://www.techcareer.net/_next/image?url=https%3A%2F%2Fcdn.gcp.techcareer.net%2Fsenior_aday_tecrubeli_yazilimci_2630787120%2Fsenior_aday_tecrubeli_yazilimci_2630787120.png&w=1200&q=100",
+      url: "https://kariyer.typeform.com/to/D3yn9U0w?typeform-source=www.techcareer.net",
+    },
+    {
+      image: "https://www.techcareer.net/_next/image?url=https%3A%2F%2Fcdn.gcp.techcareer.net%2FTR_1112_412_de17b90249%2FTR_1112_412_de17b90249.png&w=1200&q=100",
+      url: "https://www.techcareer.net/dictionary",
+    },
+    {
+      image: "https://www.techcareer.net/_next/image?url=https%3A%2F%2Fcdn.gcp.techcareer.net%2FBanner_TR_1112_412_6c2ce3564b%2FBanner_TR_1112_412_6c2ce3564b.png&w=1200&q=100",
+      url: "https://www.techcareer.net/courses",
+    },
+    {
+      image: "https://www.techcareer.net/_next/image?url=https%3A%2F%2Fcdn.gcp.techcareer.net%2Fluxoft_hackathon_1112x412_3468c22c84%2Fluxoft_hackathon_1112x412_3468c22c84.png&w=1200&q=100",
+      url: "https://www.techcareer.net/hackathon/luxoft-parking-hackathon",
+    },
+  ];
 
   return (
     <div style={styles.wrapper}>
-      {/* Ana İçerik */}
+      {/* Ek görseller */}
+      <div style={styles.shapeDots}>
+        <img
+          src="assets/shape-dots.svg"
+          alt="Dots Shape"
+          style={{ width: "50px", height: "50px", marginLeft: "330px" }}
+        />
+      </div>
+      <div style={styles.kesikCizgi}>
+        <img
+          src="assets/kesik-yan-cizgi.svg"
+          alt="Kesik Çizgi"
+          style={{ width: "142px", height: "142px", marginRight: "250px" }}
+        />
+      </div>
+
+      {/* Slider */}
       <div style={styles.content}>
-        {/* Slider Component */}
         <Slider {...settings} style={styles.slider}>
-          <div style={styles.contentBox}>
-            {/* Tek bir görsel gösterilecek */}
-            <img
-              src="https://www.techcareer.net/_next/image?url=https%3A%2F%2Fcdn.gcp.techcareer.net%2F1112_412_2_cd52574011%2F1112_412_2_cd52574011.png&w=1200&q=100"
-              alt="Slide 1"
-              style={styles.image}
-            />
-          </div>
-          <div style={styles.contentBox}>
-            <img
-              src="https://www.techcareer.net/_next/image?url=https%3A%2F%2Fcdn.gcp.techcareer.net%2F1112_412_2_cd52574011%2F1112_412_2_cd52574011.png&w=1200&q=100"
-              alt="Slide 2"
-              style={styles.image}
-            />
-          </div>
-          <div style={styles.contentBox}>
-            <img
-              src="https://www.techcareer.net/_next/image?url=https%3A%2F%2Fcdn.gcp.techcareer.net%2F1112_412_2_cd52574011%2F1112_412_2_cd52574011.png&w=1200&q=100"
-              alt="Slide 3"
-              style={styles.image}
-            />
-          </div>
+          {slides.map((slide, index) => (
+            <div key={index} style={styles.contentBox}>
+              <a href={slide.url} target="_blank" rel="noopener noreferrer">
+                <img src={slide.image} alt={`Slide ${index + 1}`} style={styles.image} />
+              </a>
+            </div>
+          ))}
         </Slider>
       </div>
 
@@ -86,78 +109,61 @@ function EventsSlider() {
 const styles = {
   wrapper: {
     position: "relative",
-    width: "auto", // Tasarıma uygun genişlik
-    marginTop: "auto",
-    marginLeft: "auto", // Center the wrapper horizontally
-    marginRight: "auto", // Center the wrapper horizontally
+    width: "100vw",
+    margin: "0 auto",
     backgroundColor: "rgb(246, 248, 255)",
-    height: "auto", // Arka planın tüm alana yayılmasını sağla
-    backgroundImage: "/public/assets/Carousel.png", // Buraya resim URL'sini ekleyebilirsiniz
-    backgroundSize: "fit", // Arka planın tam ekranı kaplamasını sağlar
-    backgroundPosition: "center", // Arka planın ortalanmasını sağlar
-    overflow: "hidden", // İçeriğin taşmasını engeller
-  },
-
-  topBar: {
-    display: "flex",
-    justifyContent: "space-between",
-    padding: "10px 20px",
-  },
-
-  dots: {
-    flex: 1,
-    backgroundColor: "#293349",
-    height: "5px",
-  },
-
-  line: {
-    flex: 5,
-    backgroundColor: "#00C26D",
-    height: "auto",
-  },
-
-  content: {
-    display: "auto",
-    alignItems: "auto",
-    justifyContent: "auto", // Center the content horizontally
-    marginTop: "auto",
-    height: "auto", // Dikey boyutu ayarladık
-    marginBottom: "0", // Alt bar ile olan mesafeyi sıfırladık
-    position: "relative", // Butonlar için gerekli konumlandırma
-    width: "auto", // İçeriğin genişliği
-  },
-
-  slider: {
-    width: "auto" ,// İçerik genişliği tam ekran
-    height: "auto", // Yükseklik tam ekran
-  },
-
-  contentBox: {
-    width: "auto", // İçeriğin genişliği
-    height: "auto", // Sabit yükseklik, gerekirse güncellenebilir
-    backgroundColor: "#293349",
-    borderRight: "15px solid #00C26D",
-    borderBottom: "15px solid #00C26D",
-    display: "flex", // Görseller için düzen
-    justifyContent: "center", // Görseli ortalama
-    alignItems: "center",
-    padding: "10px",
     overflow: "hidden",
-    margin: "auto", // Center the contentBox horizontally
   },
-
+  shapeDots: {
+    position: "absolute",
+    top: "20px",
+    left: "2px",
+    zIndex: 5,
+  },
+  kesikCizgi: {
+    position: "absolute",
+    top: "20px",
+    right: "20px",
+    zIndex: 5,
+  },
+  content: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    margin: "0",
+    position: "relative",
+  },
+  slider: {
+    width: "100%",
+    maxWidth: "1200px",
+    margin: "0 auto",
+  },
+  contentBox: {
+    width: "100%",
+    height: "400px",
+    margin: "0",
+    padding: "20px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    border: "2px solid #e0e0e0",
+    borderRadius: "12px",
+    boxShadow: "4px 4px 0px 2px rgba(0, 182, 102, 0.6)",
+    backgroundColor: "#fff",
+  },
   image: {
-    width: "auto", // Görselin genişliği %100
-    height: "auto", // Görselin yüksekliği otomatik ayar
-    objectFit: "cover", // Ensures the image maintains aspect ratio
-    borderRadius: "5px", // Görselin köşelerini yuvarlama
+    width: "auto",
+    maxHeight: "100%",
+    objectFit: "contain",
+    borderRadius: "5px",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
   },
-
   bottomBar: {
-    width: "auto", // Full width
+    width: "100%",
     height: "100px",
     backgroundColor: "#293349",
-    marginTop: "20px", // Space between the slider and bottom bar
+    marginTop: "5px",
   },
 };
 
