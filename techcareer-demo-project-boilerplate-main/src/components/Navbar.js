@@ -1,231 +1,126 @@
-import React, { useState } from 'react';
-import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { styled, alpha } from '@mui/material/styles';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import InputBase from '@mui/material/InputBase';
-import { Button, Menu, MenuItem, Stack } from '@mui/material';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import logo from './assets/techcareer-logo.svg';
+import React from "react";
+import SearchIcon from "@mui/icons-material/Search";
+import { styled } from "@mui/material/styles";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import { Button, Stack, OutlinedInput, InputAdornment } from "@mui/material";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { Link } from "react-router-dom";
 
-const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.black, 0.06),
-  '&:hover': {
-    backgroundColor: alpha(theme.palette.common.black, 0.12),
-  },
-  width: '300px',
+const StyledSearchBar = styled(OutlinedInput)(({ theme }) => ({
+  backgroundColor: "white",
+  borderRadius: "4px",
+  border: "1px solid #ccc",
+  width: "300px",
   marginLeft: theme.spacing(2),
-  [theme.breakpoints.down('md')]: {
-    display: 'none'
-  }
-}));
-
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'black',
-  '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    width: '250px',
-    transition: theme.transitions.create('width'),
-    color: 'black',
-    '&::placeholder': {
-      color: 'rgba(0, 0, 0, 0.6)',
-      opacity: 1,
-    },
+  "&:hover": {
+    borderColor: "#00C26D",
+  },
+  "& .MuiOutlinedInput-input": {
+    padding: "8px 14px",
+    fontSize: "14px",
+    fontFamily: "Roboto, sans-serif",
+  },
+  "& .MuiOutlinedInput-notchedOutline": {
+    borderColor: "#ccc",
+  },
+  "&:hover .MuiOutlinedInput-notchedOutline": {
+    borderColor: "#00C26D",
+  },
+  "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+    borderColor: "#00C26D",
   },
 }));
 
 export default function PrimarySearchAppBar() {
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const isMobile = useMediaQuery('(max-width:768px)');
-
-  const handleMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-  };
-
-  const handleSearchToggle = () => {
-    setIsSearchOpen((prev) => !prev);
-  };
+  const isMobile = useMediaQuery("(max-width:1100px)");
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{ backgroundColor: 'white' }}>
-        <Toolbar>
+      <AppBar position="static" sx={{ backgroundColor: "white", boxShadow: "-moz-initial" }}>
+        <Toolbar
+          sx={{
+            display: "flex",
+            flexDirection: { xs: "column", sm: "row" },
+            justifyContent: "space-between",
+            alignItems: "center",
+            paddingX: { xs: 1, sm: 3 },
+          }}
+        >
           {/* Logo */}
           <Box sx={{ flexGrow: { xs: 1, md: 0 } }}>
-            <a href="../Pages/Home">
-              <img 
-                src={logo} 
-                alt="logo" 
+            <Link to="/">
+              <img
+                src="/assets/techcareer-logo.svg"
+                alt="logo"
                 style={{
-                  width: 'auto',
-                  height: '25px',
-                  maxWidth: '200px'
+                  width: "auto",
+                  height: "20px",
+                  maxWidth: "190px",
+                  paddingLeft: "300px",
                 }}
               />
-            </a>
+            </Link>
           </Box>
 
-          {/* Desktop Search */}
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Etkinlik, İş ilanı, Blog ara"
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </Search>
-
-          {/* Spacer */}
-          <Box sx={{ flexGrow: 1 }} />
-
-          {/* Desktop Buttons */}
-          {!isMobile && (
-            <Stack 
-              spacing={1}
-              direction="row"
-              sx={{
-                overflowX: 'auto',
-                flexWrap: 'nowrap',
-                '&::-webkit-scrollbar': { display: 'none' },
-                scrollbarWidth: 'none',
-                msOverflowStyle: 'none',
-              }}
-            >
-              <Button variant="text" sx={{ color: 'black', whiteSpace: 'nowrap', minWidth: 'auto' }}>Etkinlikler</Button>
-              <Button variant="text" sx={{ color: 'black', whiteSpace: 'nowrap', minWidth: 'auto' }}>İş ilanları</Button>
-              <Button variant="text" sx={{ color: 'black', whiteSpace: 'nowrap', minWidth: 'auto' }}>Eğitimler</Button>
-              <Button variant="text" sx={{ color: 'black', whiteSpace: 'nowrap', minWidth: 'auto' }}>Komünite</Button>
-              <Button variant="text" sx={{ color: 'black', whiteSpace: 'nowrap', minWidth: 'auto' }}>Şirketler</Button>
-              <Button 
-                variant="contained" 
-                sx={{ 
-                  backgroundColor: '#1eb96b',
-                  color: 'white',
-                  whiteSpace: 'nowrap',
-                  minWidth: 'auto',
-                  '&:hover': {
-                    backgroundColor: '#1aa65f',
-                  }
-                }}
-              >
-                Giriş/Üye Ol
-              </Button>
-            </Stack>
-          )}
-
-          {/* Mobile Icons */}
-          {isMobile && (
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-              <IconButton 
-                onClick={handleSearchToggle} 
-                sx={{ color: 'black' }}
-              >
-                <SearchIcon />
-              </IconButton>
-              <IconButton
-                onClick={handleMenuOpen}
-                sx={{ color: 'black' }}
-              >
-                <MenuIcon />
-              </IconButton>
-            </Box>
-          )}
-
-          {/* Mobile Search Overlay */}
-          {isMobile && isSearchOpen && (
-            <Box
-              sx={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                right: 0,
-                backgroundColor: 'white',
-                zIndex: 1100,
-                display: 'flex',
-                alignItems: 'center',
-                padding: '8px 16px',
-                boxShadow: '0 2px 4px rgb(0,194,109)',
-              }}
-            >
-              <IconButton 
-                onClick={handleSearchToggle}
-                sx={{ color: 'black', mr: 1 }}
-              >
-                <ArrowBackIcon />
-              </IconButton>
-              <StyledInputBase
-                autoFocus
-                fullWidth
+          {/* Main Content (Search and Buttons) */}
+          <Box sx={{ display: "flex", alignItems: "center", flexGrow: 1 }}>
+            {/* Desktop Search */}
+            {!isMobile && (
+              <StyledSearchBar
                 placeholder="Etkinlik, İş ilanı, Blog ara"
-                inputProps={{ 'aria-label': 'search' }}
+                startAdornment={
+                  <InputAdornment position="start">
+                    <SearchIcon />
+                  </InputAdornment>
+                }
               />
-            </Box>
-          )}
+            )}
 
-          {/* Mobile Menu */}
-          <Menu
-            anchorEl={anchorEl}
-            open={Boolean(anchorEl)}
-            onClose={handleMenuClose}
-            anchorOrigin={{
-              vertical: 'top',
-              horizontal: 'right',
-            }}
-            transformOrigin={{
-              vertical: 'top',
-              horizontal: 'right',
-            }}
-            PaperProps={{
-              sx: {
-                width: '200px',
-                mt: 2
-              }
-            }}
-          >
-            <MenuItem onClick={handleMenuClose} sx={{ width: '100%' }}>Etkinlikler</MenuItem>
-            <MenuItem onClick={handleMenuClose} sx={{ width: '100%' }}>İş ilanları</MenuItem>
-            <MenuItem onClick={handleMenuClose} sx={{ width: '100%' }}>Eğitimler</MenuItem>
-            <MenuItem onClick={handleMenuClose} sx={{ width: '100%' }}>Komünite</MenuItem>
-            <MenuItem onClick={handleMenuClose} sx={{ width: '100%' }}>Şirketler</MenuItem>
-            <MenuItem onClick={handleMenuClose} sx={{ width: '100%', padding: '8px' }}>
-              <Button 
-                variant="contained" 
-                fullWidth
-                sx={{ 
-                  backgroundColor: '#1eb96b',
-                  color: 'white',
-                  '&:hover': {
-                    backgroundColor: '#1aa65f',
-                  }
-                }}
-              >
-                Giriş/Üye Ol
-              </Button>
-            </MenuItem>
-          </Menu>
+            {/* Desktop Buttons */}
+            {!isMobile && (
+              <Stack direction="row" spacing={1} sx={{ marginLeft: 2 }}>
+                <Button variant="text" sx={{ color: "black", whiteSpace: "nowrap" }}>
+                  Etkinlikler
+                </Button>
+                <Button variant="text" sx={{ color: "black", whiteSpace: "nowrap" }}>
+                  İş ilanları
+                </Button>
+                <Button variant="text" sx={{ color: "black", whiteSpace: "nowrap" }}>
+                  Eğitimler
+                </Button>
+                <Button variant="text" sx={{ color: "black", whiteSpace: "nowrap" }}>
+                  Komünite
+                </Button>
+                <Button variant="text" sx={{ color: "black", whiteSpace: "nowrap" }}>
+                  Şirketler
+                </Button>
+              </Stack>
+            )}
+          </Box>
+
+          {/* "Giriş/Üye Ol" Button */}
+          <Box sx={{
+            display: "flex",
+            alignItems: "center-right",
+            justifyContent: "right",
+            marginRight:"100px",
+            flexGrow: { xs: 1, md: 0 }
+          }}>
+            <Button
+              variant="contained"
+              sx={{
+                backgroundColor: "#00C26D",
+                color: "white",
+                whiteSpace: "nowrap",
+                marginRight:"100px",
+                "&:hover": { backgroundColor: "#00C26D" },
+              }}
+            >
+              Giriş/Üye Ol
+            </Button>
+          </Box>
         </Toolbar>
       </AppBar>
     </Box>

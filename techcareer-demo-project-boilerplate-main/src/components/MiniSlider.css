@@ -1,0 +1,37 @@
+.container {
+    position: relative;
+    height: 100px;
+    padding-left: 208px;
+    padding-right: 208px;
+    background-color: #f0f0f0;
+  }
+  
+  .btn {
+    align-content: center;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+  }
+  
+  .slick-prev:before,
+  .slick-next:before {
+    content: ''; /* Hides default arrows */
+  }
+  
+  .controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  
+  button {
+    padding: 10px;
+    margin: 0 5px;
+    cursor: pointer;
+    background-color: #293349;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+  }
+  
