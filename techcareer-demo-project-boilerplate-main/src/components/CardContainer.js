@@ -1,22 +1,28 @@
 import React from 'react';
 import { Box } from '@mui/material';
-import CustomCard from './CustomCard'; // CustomCard bileşenini içe aktar
+import CustomCard from './CustomCard';
 
 function CardContainer() {
   return (
     <Box
       sx={{
-        display: 'flex',
-        gap: '20px',          // Kartlar arasında boşluk
-        flexWrap: 'wrap',     // Kartlar satırlara sığacak şekilde saracak
-        justifyContent: 'center', // Kartları yatayda ortala
-        padding: '20px',      // Container etrafında padding ekledik
-        marginTop: '20px',    // Üstten biraz boşluk bırakıldı
+        display: 'grid',
+        gridTemplateColumns: {
+          xs: '1fr', // Küçük ekranlar için tek sütun
+          sm: '1fr 1fr', // Orta ekranlar için iki sütun
+          md: '1fr 1fr 1fr', // Büyük ekranlar için üç sütun
+        },
+        gap: '20px', // Kartlar arasındaki boşluk
+        justifyItems: 'center', // Kartların yatay hizalaması
+        alignItems: 'stretch', // Kartların dikey hizalaması
+        padding: '20px',
       }}
     >
       {/* Kart 1 */}
       <CustomCard
         title="FMSS Bilişim Android Development Bootcamp with Jetpack"
+        buttonMargin="0px 15px 0 0px" // Margin değerleri
+
         description="Ücretsiz Bootcamp'e katıl, Jr. Android Developer ol!"
         tags={['Bootcamp', 'İş Fırsatı']}
         buttonText="Başvur"
@@ -24,7 +30,7 @@ function CardContainer() {
         eventdate="01.01.2025"
         lastdate="01.02.2025"
       />
-      
+
       {/* Kart 2 */}
       <CustomCard
         title="Luxoft Parking Hackathon"
@@ -35,7 +41,7 @@ function CardContainer() {
         eventdate="01.01.2025"
         lastdate="01.02.2025"
       />
-      
+
       {/* Kart 3 */}
       <CustomCard
         title="Hacettepe Üniversitesi: AI Fest 2024"

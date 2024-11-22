@@ -1,9 +1,7 @@
 import React from 'react';
-import Slider from "react-slick"; // Make sure to install react-slick and slick-carousel
-
-// Import slick-carousel styles
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick"; 
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css"; 
 
 function EventsSlider() {
   const ArrowButton = ({ direction, onClick }) => {
@@ -43,51 +41,27 @@ function EventsSlider() {
     slidesToScroll: 1,
     nextArrow: <ArrowButton direction="right" />,
     prevArrow: <ArrowButton direction="left" />,
+    customPaging: (i) => (
+      <div style={{ backgroundColor: "#00b666", borderRadius: "50%", width: "15px", height: "15px" }}></div>
+    ),
   };
 
-  // Slider içeriği
   const slides = [
-    {
-      image: "https://www.techcareer.net/_next/image?url=https%3A%2F%2Fcdn.gcp.techcareer.net%2F1112_412_2_cd52574011%2F1112_412_2_cd52574011.png&w=1200&q=100",
-      url: "https://survey.alchemer.com/s3/8068418/N240021",
-    },
-    {
-      image: "https://www.techcareer.net/_next/image?url=https%3A%2F%2Fcdn.gcp.techcareer.net%2Fsenior_aday_tecrubeli_yazilimci_2630787120%2Fsenior_aday_tecrubeli_yazilimci_2630787120.png&w=1200&q=100",
-      url: "https://kariyer.typeform.com/to/D3yn9U0w?typeform-source=www.techcareer.net",
-    },
-    {
-      image: "https://www.techcareer.net/_next/image?url=https%3A%2F%2Fcdn.gcp.techcareer.net%2FTR_1112_412_de17b90249%2FTR_1112_412_de17b90249.png&w=1200&q=100",
-      url: "https://www.techcareer.net/dictionary",
-    },
-    {
-      image: "https://www.techcareer.net/_next/image?url=https%3A%2F%2Fcdn.gcp.techcareer.net%2FBanner_TR_1112_412_6c2ce3564b%2FBanner_TR_1112_412_6c2ce3564b.png&w=1200&q=100",
-      url: "https://www.techcareer.net/courses",
-    },
-    {
-      image: "https://www.techcareer.net/_next/image?url=https%3A%2F%2Fcdn.gcp.techcareer.net%2Fluxoft_hackathon_1112x412_3468c22c84%2Fluxoft_hackathon_1112x412_3468c22c84.png&w=1200&q=100",
-      url: "https://www.techcareer.net/hackathon/luxoft-parking-hackathon",
-    },
+    { image: "https://www.techcareer.net/_next/image?url=https%3A%2F%2Fcdn.gcp.techcareer.net%2F1112_412_2_cd52574011%2F1112_412_2_cd52574011.png&w=1200&q=100", url: "https://survey.alchemer.com/s3/8068418/N240021" },
+    { image: "https://www.techcareer.net/_next/image?url=https%3A%2F%2Fcdn.gcp.techcareer.net%2Fsenior_aday_tecrubeli_yazilimci_2630787120%2Fsenior_aday_tecrubeli_yazilimci_2630787120.png&w=1200&q=100", url: "https://kariyer.typeform.com/to/D3yn9U0w?typeform-source=www.techcareer.net" },
+    { image: "https://www.techcareer.net/_next/image?url=https%3A%2F%2Fcdn.gcp.techcareer.net%2FTR_1112_412_de17b90249%2FTR_1112_412_de17b90249.png&w=1200&q=100", url: "https://www.techcareer.net/dictionary" },
+    { image: "https://www.techcareer.net/_next/image?url=https%3A%2F%2Fcdn.gcp.techcareer.net%2FBanner_TR_1112_412_6c2ce3564b%2FBanner_TR_1112_412_6c2ce3564b.png&w=1200&q=100", url: "https://www.techcareer.net/courses" },
+    { image: "https://www.techcareer.net/_next/image?url=https%3A%2F%2Fcdn.gcp.techcareer.net%2Fluxoft_hackathon_1112x412_3468c22c84%2Fluxoft_hackathon_1112x412_3468c22c84.png&w=1200&q=100", url: "https://www.techcareer.net/hackathon/luxoft-parking-hackathon" },
   ];
 
   return (
     <div style={styles.wrapper}>
-      {/* Ek görseller */}
       <div style={styles.shapeDots}>
-        <img
-          src="assets/shape-dots.svg"
-          alt="Dots Shape"
-          style={{ width: "50px", height: "50px", marginLeft: "330px" }}
-        />
+        <img src="assets/shape-dots.svg" alt="Dots Shape" style={{ width: "40px", height: "40px", marginLeft: "330px" }} />
       </div>
       <div style={styles.kesikCizgi}>
-        <img
-          src="assets/kesik-yan-cizgi.svg"
-          alt="Kesik Çizgi"
-          style={{ width: "142px", height: "142px", marginRight: "250px" }}
-        />
+        <img src="assets/kesik-yan-cizgi.svg" alt="Kesik Çizgi" style={{ width: "110px", height: "110px", marginRight: "250px" }} />
       </div>
-
-      {/* Slider */}
       <div style={styles.content}>
         <Slider {...settings} style={styles.slider}>
           {slides.map((slide, index) => (
@@ -99,9 +73,80 @@ function EventsSlider() {
           ))}
         </Slider>
       </div>
-
-      {/* Alt Mavi Bar */}
       <div style={styles.bottomBar}></div>
+
+      {/* Mobil CSS stilini buraya ekleyelim */}
+      <style>
+        {`
+          .slick-dots li {
+            margin: 0 8px;
+          }
+
+          .slick-dots li button {
+            margin-bottom: 50px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #00b666;
+            border: none;
+            outline: none;
+            padding: 0;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+          }
+
+          .slick-dots li button::before {
+            content: '';
+          }
+
+          .slick-dots li.slick-active button {
+            opacity: 1;
+          }
+
+          /* Mobile styles */
+          @media (max-width: 768px) {
+            .slick-prev, .slick-next {
+              width: 30px;
+              height: 30px;
+              font-size: 16px;
+            }
+
+            .contentBox {
+              height: 250px;
+              padding: 10px;
+            }
+
+            .image {
+              max-height: 80%;
+              object-fit: cover;
+            }
+
+            .slick-dots li button {
+              width: 10px;
+              height: 10px;
+            }
+
+            .slick-dots li.slick-active button {
+              opacity: 1;
+            }
+
+            /* Küçültme: Nokta ve Kesik çizgi */
+            .shapeDots img {
+              width: 30px;
+              height: 30px;
+            }
+
+            .kesikCizgi img {
+              width: 100px;
+              height: 100px;
+            }
+
+            .slick-slide {
+              overflow: hidden;
+            }
+          }
+        `}
+      </style>
     </div>
   );
 }
@@ -147,9 +192,9 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    border: "2px solid #e0e0e0",
+    border: "2px solid #00b666",
     borderRadius: "12px",
-    boxShadow: "4px 4px 0px 2px rgba(0, 182, 102, 0.6)",
+    boxShadow: "0px 10px 20px rgba(0, 182, 102, 0.5)",
     backgroundColor: "#fff",
   },
   image: {
@@ -157,7 +202,6 @@ const styles = {
     maxHeight: "100%",
     objectFit: "contain",
     borderRadius: "5px",
-    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
   },
   bottomBar: {
     width: "100%",

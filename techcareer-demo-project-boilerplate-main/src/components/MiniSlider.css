@@ -1,37 +1,101 @@
 .container {
-    position: relative;
-    height: 100px;
-    padding-left: 208px;
-    padding-right: 208px;
-    background-color: #f0f0f0;
+  position: relative;
+  height: 100px;
+  padding-left: 208px;
+  padding-right: 208px;
+  background-color: #f0f0f0;
+}
+
+/* Button styles */
+.btn {
+  align-content: center;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+}
+
+/* Remove default arrows */
+.slick-prev:before,
+.slick-next:before {
+  content: ''; /* Hides default arrows */
+}
+
+/* Controls section, centered buttons */
+.controls {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+/* Style for buttons below the slider */
+button {
+  padding: 10px;
+  margin: 0 5px;
+  cursor: pointer;
+  background-color: #293349;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 1024px) {
+  .container {
+    padding-left: 20px; /* Reduce padding on tablets */
+    padding-right: 20px;
   }
-  
+
+  /* Adjust button size for tablet screens */
   .btn {
-    align-content: center;
-    border-radius: 50%;
-    height: 40px;
-    width: 40px;
-    cursor: pointer;
+    height: 35px;
+    width: 35px;
   }
   
-  .slick-prev:before,
-  .slick-next:before {
-    content: ''; /* Hides default arrows */
-  }
-  
+  /* Center controls and add some spacing for tablets */
   .controls {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
+    margin-top: 20px;
   }
-  
+
+  /* Make sure the container and buttons adjust well on smaller screens */
   button {
-    padding: 10px;
-    margin: 0 5px;
-    cursor: pointer;
-    background-color: #293349;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
+    padding: 8px;
+    font-size: 14px;
   }
-  
+}
+
+/* Mobile screen adjustments */
+@media (max-width: 768px) {
+  .container {
+    padding-left: 10px; /* Even smaller padding for mobile */
+    padding-right: 10px;
+  }
+
+  /* Adjust button size for mobile */
+  .btn {
+    height: 30px;
+    width: 30px;
+  }
+
+  /* Reduce margin between control buttons for mobile */
+  .controls {
+    margin-top: 15px;
+  }
+
+  /* Button adjustments on small screens */
+  button {
+    padding: 5px;
+    font-size: 12px;
+  }
+
+  /* Ensure the images inside the slider are properly sized on mobile */
+  .slick-slide img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Disable dots navigation for mobile devices */
+  .slick-dots {
+    display: none;
+  }
+}
